@@ -17,8 +17,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Uptime sensor for device health monitoring
 
 ### Changed
+- **BREAKING**: Renamed component from "p1_reader" to "sourceful_zap" for unique branding
 - **BREAKING**: Updated default name from "P1 Reader" to "Zap" for better branding
 - **BREAKING**: Corrected system endpoint from "/" to "/api/system"
+- **BREAKING**: Configuration platform changed from `platform: p1_reader` to `platform: sourceful_zap`
 - Device information now uses real device ID from Zap instead of static identifier
 - Firmware version is now retrieved from device and displayed in Home Assistant
 - Configuration now supports separate endpoints for P1 data and system information

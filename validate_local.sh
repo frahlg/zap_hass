@@ -25,7 +25,7 @@ fi
 
 # Run basic Python syntax check
 echo "🐍 Checking Python syntax..."
-docker run --rm -v $(pwd):/app -w /app python:3.10-slim bash -c "python -m py_compile custom_components/p1_reader/__init__.py custom_components/p1_reader/sensor.py"
+docker run --rm -v $(pwd):/app -w /app python:3.10-slim bash -c "python -m py_compile custom_components/sourceful_zap/__init__.py custom_components/sourceful_zap/sensor.py"
 
 if [ $? -eq 0 ]; then
     echo "✅ Python syntax check passed!"
@@ -36,7 +36,7 @@ fi
 
 # Check JSON files
 echo "📄 Checking JSON files..."
-docker run --rm -v $(pwd):/app -w /app python:3.10-slim bash -c "python -m json.tool custom_components/p1_reader/manifest.json >/dev/null && python -m json.tool hacs.json >/dev/null"
+docker run --rm -v $(pwd):/app -w /app python:3.10-slim bash -c "python -m json.tool custom_components/sourceful_zap/manifest.json >/dev/null && python -m json.tool hacs.json >/dev/null"
 
 if [ $? -eq 0 ]; then
     echo "✅ JSON files are valid!"

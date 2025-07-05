@@ -1,6 +1,6 @@
 {
-  "domain": "p1_reader",
-  "name": "P1 Reader (Sourceful Energy Zap)",
+  "domain": "sourceful_zap",
+  "name": "Sourceful Energy Zap",
   "documentation": "https://github.com/fredde/zap_hass",
   "requirements": [],
   "codeowners": ["@fredde"],

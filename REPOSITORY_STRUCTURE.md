@@ -1,4 +1,4 @@
-# P1 Reader Home Assistant Custom Component - Repository Structure
+# Sourceful Energy Zap Home Assistant Custom Component - Repository Structure
 
 This document provides an overview of the complete repository structure and how to get started.
 
@@ -20,7 +20,7 @@ zap_hass/
 │       └── validate.yml                # GitHub Actions CI
 ├── 
 ├── custom_components/
-│   └── p1_reader/                      # Main component directory
+│   └── sourceful_zap/                  # Main component directory
 │       ├── __init__.py                 # Component initialization
 │       ├── manifest.json               # Component manifest
 │       └── sensor.py                   # Sensor platform implementation
@@ -32,7 +32,7 @@ zap_hass/
 ## What's Included
 
 ### Core Component Files
-- **`custom_components/p1_reader/`** - The main Home Assistant custom component
+- **`custom_components/sourceful_zap/`** - The main Home Assistant custom component
   - `__init__.py` - Component initialization and setup
   - `manifest.json` - Component metadata and requirements
   - `sensor.py` - Complete sensor platform with all OBIS codes
@@ -135,7 +135,7 @@ This component is configured for HACS (Home Assistant Community Store):
 2. Go to "Integrations"
 3. Click "Custom repositories"
 4. Add this repository URL
-5. Install the P1 Reader integration
+5. Install the Sourceful Energy Zap integration
 
 ## API Compatibility
 

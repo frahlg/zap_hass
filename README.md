@@ -1,6 +1,6 @@
-# P1 Reader Home Assistant Custom Component
+# Sourceful Energy Zap Home Assistant Custom Component
 
-A custom component for Home Assistant that integrates with the [Sourceful Energy Zap](https://sourceful.energy/store/sourceful-energy-zap) P1 Reader to monitor smart meter data.
+A custom component for Home Assistant that integrates with the [Sourceful Energy Zap](https://sourceful.energy/store/sourceful-energy-zap) to monitor smart meter data.
 
 The Sourceful Energy Zap is a P1 meter reader that gives you unprecedented clarity of your energy consumption to help reduce your bills. Made by [Sourceful Labs AB](https://sourceful.energy) in Kalmar, Sweden 🇸🇪, it's designed for European smart meters with standard P1 RJ12 ports.
 
@@ -74,7 +74,7 @@ The Sourceful Energy Zap is compatible with standard P1 RJ12 smart meters in Eur
 2. **Add to configuration.yaml**:
    ```yaml
    sensor:
-     - platform: p1_reader
+     - platform: sourceful_zap
        host: zap.local
    ```
 3. **Restart Home Assistant**
@@ -89,13 +89,13 @@ The Sourceful Energy Zap is compatible with standard P1 RJ12 smart meters in Eur
 3. Click the three dots in the top right corner
 4. Select "Custom repositories"
 5. Add this repository URL and select "Integration" as the category
-6. Install the integration
+6. Search for "Sourceful Energy Zap" and install the integration
 7. Restart Home Assistant
 
 ### Method 2: Manual Installation
 
 1. Download this repository
-2. Copy the `custom_components/p1_reader` folder to your Home Assistant `custom_components` directory
+2. Copy the `custom_components/sourceful_zap` folder to your Home Assistant `custom_components` directory
 3. Restart Home Assistant
 4. Add the configuration to your `configuration.yaml`
 
@@ -105,7 +105,7 @@ Add the following to your `configuration.yaml`:
 
 ```yaml
 sensor:
-  - platform: p1_reader
+  - platform: sourceful_zap
     host: zap.local  # IP address or hostname of your Zap device
     endpoint: /api/data/p1/obis  # P1 data API endpoint (default)
     system_endpoint: /api/system  # System info API endpoint (default)
@@ -264,18 +264,18 @@ To enable debug logging, add this to your `configuration.yaml`:
 ```yaml
 logger:
   logs:
-    custom_components.p1_reader: debug
+    custom_components.sourceful_zap: debug
 ```
 
 ### Checking Logs
 
 View logs in Home Assistant:
 1. Go to **Configuration** → **Logs**
-2. Search for "p1_reader"
+2. Search for "sourceful_zap"
 
 Or check the log file directly:
 ```bash
-grep p1_reader home-assistant.log
+grep sourceful_zap home-assistant.log
 ```
 
 ## Development

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Validation script for P1 Reader Home Assistant Custom Component
+Validation script for Sourceful Energy Zap Home Assistant Custom Component
 This script checks if the component is properly structured and configured.
 """
 
@@ -62,8 +62,8 @@ def validate_manifest_content(manifest_path):
             print(f"✗ Manifest validation: Missing fields: {missing_fields}")
             return False
         
-        if manifest['domain'] != 'p1_reader':
-            print(f"✗ Manifest validation: Domain should be 'p1_reader', got '{manifest['domain']}'")
+        if manifest['domain'] != 'sourceful_zap':
+            print(f"✗ Manifest validation: Domain should be 'sourceful_zap', got '{manifest['domain']}'")
             return False
         
         print("✓ Manifest validation: All required fields present")
@@ -74,14 +74,14 @@ def validate_manifest_content(manifest_path):
 
 def main():
     """Main validation function."""
-    print("P1 Reader Home Assistant Custom Component Validator")
-    print("=" * 50)
+    print("Sourceful Energy Zap Home Assistant Custom Component Validator")
+    print("=" * 60)
     
     all_checks_passed = True
     
     # Check directory structure
     print("\n1. Checking directory structure...")
-    base_dir = Path("custom_components/p1_reader")
+    base_dir = Path("custom_components/sourceful_zap")
     if not base_dir.exists():
         print(f"✗ Component directory: {base_dir} (missing)")
         print("ERROR: Component directory not found. Please run this script from the repository root.")
@@ -145,10 +145,10 @@ def main():
         check_file_exists(file_path, description)
     
     # Summary
-    print("\n" + "=" * 50)
+    print("\n" + "=" * 60)
     if all_checks_passed:
         print("✓ All validation checks passed!")
-        print("Your P1 Reader component is ready for use.")
+        print("Your Sourceful Energy Zap component is ready for use.")
         return True
     else:
         print("✗ Some validation checks failed.")

@@ -1,14 +1,14 @@
-# Example configuration for P1 Reader Home Assistant Custom Component
+# Example configuration for Sourceful Energy Zap Home Assistant Custom Component
 # Add this to your configuration.yaml file
 
 # Basic configuration
 sensor:
-  - platform: p1_reader
+  - platform: sourceful_zap
     host: zap.local
     
 # Advanced configuration with all options
 # sensor:
-#   - platform: p1_reader
+#   - platform: sourceful_zap
 #     host: 192.168.1.100  # IP address or hostname of your Zap device
 #     endpoint: /api/data/p1/obis  # P1 data API endpoint (default)
 #     system_endpoint: /api/system  # System info API endpoint (default)
@@ -18,7 +18,7 @@ sensor:
 # Optional: Enable debug logging
 logger:
   logs:
-    custom_components.p1_reader: debug
+    custom_components.sourceful_zap: debug
 
 # Optional: Energy dashboard configuration
 # Once the integration is running, you can add these sensors to your energy dashboard:

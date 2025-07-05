@@ -10,7 +10,7 @@ from homeassistant.const import Platform
 
 _LOGGER = logging.getLogger(__name__)
 
-DOMAIN = "p1_reader"
+DOMAIN = "sourceful_zap"
 PLATFORMS = [Platform.SENSOR]
 
 

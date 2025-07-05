@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# P1 Reader Home Assistant Custom Component Installation Script
-# This script helps install the P1 Reader custom component
+# Sourceful Energy Zap Home Assistant Custom Component Installation Script
+# This script helps install the Sourceful Energy Zap custom component
 
 set -e
 
@@ -14,7 +14,7 @@ NC='\033[0m' # No Color
 # Default Home Assistant config directory
 DEFAULT_CONFIG_DIR="$HOME/.homeassistant"
 
-echo -e "${GREEN}P1 Reader Home Assistant Custom Component Installer${NC}"
+echo -e "${GREEN}Sourceful Energy Zap Home Assistant Custom Component Installer${NC}"
 echo "=================================================="
 
 # Check if Home Assistant config directory exists
@@ -41,24 +41,24 @@ if [ ! -d "$CUSTOM_COMPONENTS_DIR" ]; then
     mkdir -p "$CUSTOM_COMPONENTS_DIR"
 fi
 
-# Create p1_reader directory
-P1_READER_DIR="$CUSTOM_COMPONENTS_DIR/p1_reader"
-if [ -d "$P1_READER_DIR" ]; then
-    echo -e "${YELLOW}P1 Reader directory already exists. Backing up...${NC}"
-    mv "$P1_READER_DIR" "$P1_READER_DIR.backup.$(date +%Y%m%d_%H%M%S)"
+# Create sourceful_zap directory
+SOURCEFUL_ZAP_DIR="$CUSTOM_COMPONENTS_DIR/sourceful_zap"
+if [ -d "$SOURCEFUL_ZAP_DIR" ]; then
+    echo -e "${YELLOW}Sourceful Zap directory already exists. Backing up...${NC}"
+    mv "$SOURCEFUL_ZAP_DIR" "$SOURCEFUL_ZAP_DIR.backup.$(date +%Y%m%d_%H%M%S)"
 fi
 
-mkdir -p "$P1_READER_DIR"
+mkdir -p "$SOURCEFUL_ZAP_DIR"
 
 # Copy component files
 echo "Copying component files..."
-cp custom_components/p1_reader/manifest.json "$P1_READER_DIR/"
-cp custom_components/p1_reader/__init__.py "$P1_READER_DIR/"
-cp custom_components/p1_reader/sensor.py "$P1_READER_DIR/"
+cp custom_components/sourceful_zap/manifest.json "$SOURCEFUL_ZAP_DIR/"
+cp custom_components/sourceful_zap/__init__.py "$SOURCEFUL_ZAP_DIR/"
+cp custom_components/sourceful_zap/sensor.py "$SOURCEFUL_ZAP_DIR/"
 
 # Set permissions
-chmod 644 "$P1_READER_DIR"/*.py
-chmod 644 "$P1_READER_DIR"/*.json
+chmod 644 "$SOURCEFUL_ZAP_DIR"/*.py
+chmod 644 "$SOURCEFUL_ZAP_DIR"/*.json
 
 echo -e "${GREEN}Installation completed successfully!${NC}"
 echo ""
@@ -66,7 +66,7 @@ echo "Next steps:"
 echo "1. Add the following to your configuration.yaml:"
 echo ""
 echo "   sensor:"
-echo "     - platform: p1_reader"
+echo "     - platform: sourceful_zap"
 echo "       host: zap.local  # or your Zap device IP address"
 echo ""
 echo "2. Restart Home Assistant"

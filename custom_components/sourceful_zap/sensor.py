@@ -35,7 +35,7 @@ import homeassistant.helpers.config_validation as cv
 
 _LOGGER = logging.getLogger(__name__)
 
-DOMAIN = "p1_reader"
+DOMAIN = "sourceful_zap"
 DEFAULT_NAME = "Zap"
 DEFAULT_HOST = "zap.local"
 DEFAULT_ENDPOINT = "/api/data/p1/obis"
