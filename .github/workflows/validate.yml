@@ -1,4 +1,4 @@
-name: Validate P1 Reader Component
+name: Validate Sourceful Energy Zap Component
 
 on:
   push:
@@ -40,22 +40,22 @@ jobs:
     
     - name: Lint with pylint
       run: |
-        pylint custom_components/p1_reader/ || true
+        pylint custom_components/sourceful_zap/ || true
     
     - name: Type checking with mypy
       run: |
-        mypy custom_components/p1_reader/ || true
+        mypy custom_components/sourceful_zap/ || true
     
     - name: Validate manifest.json
       run: |
-        python -m json.tool custom_components/p1_reader/manifest.json > /dev/null
+        python -m json.tool custom_components/sourceful_zap/manifest.json > /dev/null
         echo "manifest.json is valid JSON"
     
     - name: Check required files exist
       run: |
-        test -f custom_components/p1_reader/manifest.json || (echo "manifest.json missing" && exit 1)
-        test -f custom_components/p1_reader/__init__.py || (echo "__init__.py missing" && exit 1)
-        test -f custom_components/p1_reader/sensor.py || (echo "sensor.py missing" && exit 1)
+        test -f custom_components/sourceful_zap/manifest.json || (echo "manifest.json missing" && exit 1)
+        test -f custom_components/sourceful_zap/__init__.py || (echo "__init__.py missing" && exit 1)
+        test -f custom_components/sourceful_zap/sensor.py || (echo "sensor.py missing" && exit 1)
         echo "All required files exist"
     
     - name: Check HACS requirements
@@ -64,11 +64,16 @@ jobs:
         python -m json.tool hacs.json > /dev/null
         echo "HACS configuration is valid"
     
+    - name: Check branding files
+      run: |
+        test -f icon.png || (echo "icon.png missing" && exit 1)
+        echo "Integration icon exists"
+    
     - name: Validate Python imports
       run: |
         python -c "
         import sys
-        sys.path.insert(0, 'custom_components/p1_reader')
+        sys.path.insert(0, 'custom_components/sourceful_zap')
         try:
             import sensor
             print('sensor.py imports successfully')
