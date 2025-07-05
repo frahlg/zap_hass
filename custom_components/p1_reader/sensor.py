@@ -1,4 +1,5 @@
 """Support for P1 Reader sensors."""
+
 from __future__ import annotations
 
 import logging
@@ -443,7 +444,9 @@ class P1DataCoordinator:
                     self.data = self._parse_obis_data(json_data.get("data", []))
                     _LOGGER.debug("Successfully parsed %d OBIS codes", len(self.data))
                 else:
-                    _LOGGER.error("API returned error status: %s", json_data.get("status"))
+                    _LOGGER.error(
+                        "API returned error status: %s", json_data.get("status")
+                    )
 
         except aiohttp.ClientError as err:
             _LOGGER.error("Error fetching P1 data: %s", err)
@@ -497,7 +500,10 @@ class P1Sensor(SensorEntity):
         self.system_coordinator = system_coordinator
         self.obis_code = obis_code
         self._attr_name = f"{name_prefix} {sensor_name}"
-        self._attr_unique_id = f"{name_prefix.lower().replace(' ', '_')}_{obis_code.replace(':', '_').replace('-', '_')}"
+        self._attr_unique_id = (
+            f"{name_prefix.lower().replace(' ', '_')}_"
+            f"{obis_code.replace(':', '_').replace('-', '_')}"
+        )
         self._attr_native_unit_of_measurement = unit
         self._attr_device_class = device_class
         self._attr_state_class = state_class
@@ -509,7 +515,9 @@ class P1Sensor(SensorEntity):
     def device_info(self) -> dict[str, Any]:
         """Return device information."""
         device_id = self.system_coordinator.device_info.get("device_id", "unknown")
-        firmware_version = self.system_coordinator.device_info.get("firmware_version", "unknown")
+        firmware_version = self.system_coordinator.device_info.get(
+            "firmware_version", "unknown"
+        )
 
         return {
             "identifiers": {(DOMAIN, device_id)},
@@ -557,7 +565,9 @@ class P1NetPowerSensor(SensorEntity):
     def device_info(self) -> dict[str, Any]:
         """Return device information."""
         device_id = self.system_coordinator.device_info.get("device_id", "unknown")
-        firmware_version = self.system_coordinator.device_info.get("firmware_version", "unknown")
+        firmware_version = self.system_coordinator.device_info.get(
+            "firmware_version", "unknown"
+        )
 
         return {
             "identifiers": {(DOMAIN, device_id)},
@@ -650,7 +660,9 @@ class SystemSensor(SensorEntity):
         self.sensor_key = sensor_key
         self.data_path = data_path
         self._attr_name = f"{name_prefix} {sensor_name}"
-        self._attr_unique_id = f"{name_prefix.lower().replace(' ', '_')}_system_{sensor_key}"
+        self._attr_unique_id = (
+            f"{name_prefix.lower().replace(' ', '_')}_system_{sensor_key}"
+        )
         self._attr_native_unit_of_measurement = unit
         self._attr_device_class = device_class
         self._attr_state_class = state_class
@@ -662,7 +674,9 @@ class SystemSensor(SensorEntity):
     def device_info(self) -> dict[str, Any]:
         """Return device information."""
         device_id = self.coordinator.device_info.get("device_id", "unknown")
-        firmware_version = self.coordinator.device_info.get("firmware_version", "unknown")
+        firmware_version = self.coordinator.device_info.get(
+            "firmware_version", "unknown"
+        )
 
         return {
             "identifiers": {(DOMAIN, device_id)},
