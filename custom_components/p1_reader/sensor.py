@@ -363,21 +363,21 @@ async def async_setup_platform(
 ) -> None:
     """Set up the P1 Reader sensors."""
     _LOGGER.debug("Setting up P1 Reader sensors")
-    
+
     # Get configuration
     host = config.get(CONF_HOST)
     endpoint = config.get(CONF_ENDPOINT)
     system_endpoint = config.get(CONF_SYSTEM_ENDPOINT)
     name = config.get(CONF_NAME)
     scan_interval = config.get(CONF_SCAN_INTERVAL)
-    
+
     p1_url = f"http://{host}{endpoint}"
     system_url = f"http://{host}{system_endpoint}"
-    
+
     # Create data coordinators
     p1_coordinator = P1DataCoordinator(hass, p1_url, scan_interval)
     system_coordinator = SystemDataCoordinator(hass, system_url, scan_interval)
-    
+
     # Create P1 sensors
     sensors = []
     for obis_code, definition in SENSOR_DEFINITIONS.items():
@@ -394,10 +394,10 @@ async def async_setup_platform(
                 name,
             )
         )
-    
+
     # Add net power sensor (calculated)
     sensors.append(P1NetPowerSensor(p1_coordinator, system_coordinator, name))
-    
+
     # Create system sensors
     for sensor_key, definition in SYSTEM_SENSOR_DEFINITIONS.items():
         sensors.append(
@@ -413,7 +413,7 @@ async def async_setup_platform(
                 name,
             )
         )
-    
+
     async_add_entities(sensors, True)
 
 
@@ -438,13 +438,13 @@ class P1DataCoordinator:
                 response = await self.session.get(self.url)
                 response.raise_for_status()
                 json_data = await response.json()
-                
+
                 if json_data.get("status") == "success":
                     self.data = self._parse_obis_data(json_data.get("data", []))
                     _LOGGER.debug("Successfully parsed %d OBIS codes", len(self.data))
                 else:
                     _LOGGER.error("API returned error status: %s", json_data.get("status"))
-                    
+
         except aiohttp.ClientError as err:
             _LOGGER.error("Error fetching P1 data: %s", err)
         except Exception as err:
@@ -453,10 +453,10 @@ class P1DataCoordinator:
     def _parse_obis_data(self, data_lines: list[str]) -> dict[str, dict[str, Any]]:
         """Parse OBIS data lines into dictionary."""
         parsed = {}
-        
+
         # Pattern to match OBIS codes: code(value*unit) or code(value)
         pattern = r"(\d+-\d+:\d+\.\d+\.\d+)\(([0-9.-]+)\*?([^)]*)\)"
-        
+
         for line in data_lines:
             match = re.match(pattern, line)
             if match:
@@ -473,7 +473,7 @@ class P1DataCoordinator:
                     _LOGGER.debug("Timestamp: %s", line)
                 else:
                     _LOGGER.debug("Could not parse line: %s", line)
-        
+
         return parsed
 
 
@@ -510,7 +510,7 @@ class P1Sensor(SensorEntity):
         """Return device information."""
         device_id = self.system_coordinator.device_info.get("device_id", "unknown")
         firmware_version = self.system_coordinator.device_info.get("firmware_version", "unknown")
-        
+
         return {
             "identifiers": {(DOMAIN, device_id)},
             "name": "Sourceful Energy Zap",
@@ -523,7 +523,7 @@ class P1Sensor(SensorEntity):
     async def async_update(self) -> None:
         """Update the sensor."""
         await self.coordinator.async_update()
-        
+
         if self.obis_code in self.coordinator.data:
             self._attr_native_value = self.coordinator.data[self.obis_code]["value"]
             self._attr_available = True
@@ -535,7 +535,12 @@ class P1Sensor(SensorEntity):
 class P1NetPowerSensor(SensorEntity):
     """Calculated net power sensor (import - export)."""
 
-    def __init__(self, coordinator: P1DataCoordinator, system_coordinator: SystemDataCoordinator, name_prefix: str = DEFAULT_NAME) -> None:
+    def __init__(
+        self,
+        coordinator: P1DataCoordinator,
+        system_coordinator: SystemDataCoordinator,
+        name_prefix: str = DEFAULT_NAME,
+    ) -> None:
         """Initialize the sensor."""
         self.coordinator = coordinator
         self.system_coordinator = system_coordinator
@@ -553,7 +558,7 @@ class P1NetPowerSensor(SensorEntity):
         """Return device information."""
         device_id = self.system_coordinator.device_info.get("device_id", "unknown")
         firmware_version = self.system_coordinator.device_info.get("firmware_version", "unknown")
-        
+
         return {
             "identifiers": {(DOMAIN, device_id)},
             "name": "Sourceful Energy Zap",
@@ -566,10 +571,10 @@ class P1NetPowerSensor(SensorEntity):
     async def async_update(self) -> None:
         """Update the sensor."""
         await self.coordinator.async_update()
-        
+
         import_power = self.coordinator.data.get("1-0:1.7.0", {}).get("value", 0)
         export_power = self.coordinator.data.get("1-0:2.7.0", {}).get("value", 0)
-        
+
         # Net power: positive = importing, negative = exporting
         self._attr_native_value = import_power - export_power
         self._attr_available = True
@@ -597,7 +602,7 @@ class SystemDataCoordinator:
                 response = await self.session.get(self.url)
                 response.raise_for_status()
                 self.data = await response.json()
-                
+
                 # Extract device info for Home Assistant device registry
                 if "zap" in self.data:
                     self.device_info = {
@@ -606,9 +611,9 @@ class SystemDataCoordinator:
                         "sdk_version": self.data["zap"].get("sdkVersion", "unknown"),
                         "local_ip": self.data["zap"].get("network", {}).get("localIP", "unknown"),
                     }
-                
+
                 _LOGGER.debug("Successfully fetched system data")
-                    
+
         except aiohttp.ClientError as err:
             _LOGGER.error("Error fetching system data: %s", err)
         except Exception as err:
@@ -658,7 +663,7 @@ class SystemSensor(SensorEntity):
         """Return device information."""
         device_id = self.coordinator.device_info.get("device_id", "unknown")
         firmware_version = self.coordinator.device_info.get("firmware_version", "unknown")
-        
+
         return {
             "identifiers": {(DOMAIN, device_id)},
             "name": "Sourceful Energy Zap",
@@ -671,7 +676,7 @@ class SystemSensor(SensorEntity):
     async def async_update(self) -> None:
         """Update the sensor."""
         await self.coordinator.async_update()
-        
+
         value = self.coordinator.get_nested_value(self.data_path)
         if value is not None:
             # Round floating point values to 2 decimal places
@@ -682,4 +687,8 @@ class SystemSensor(SensorEntity):
             self._attr_available = True
         else:
             self._attr_available = False
-            _LOGGER.debug("System sensor %s: No data found at path %s", self.sensor_key, self.data_path) 
+            _LOGGER.debug(
+                "System sensor %s: No data found at path %s",
+                self.sensor_key,
+                self.data_path,
+            )
