@@ -617,9 +617,13 @@ class SystemDataCoordinator:
                 if "zap" in self.data:
                     self.device_info = {
                         "device_id": self.data["zap"].get("deviceId", "unknown"),
-                        "firmware_version": self.data["zap"].get("firmwareVersion", "unknown"),
+                        "firmware_version": self.data["zap"].get(
+                            "firmwareVersion", "unknown"
+                        ),
                         "sdk_version": self.data["zap"].get("sdkVersion", "unknown"),
-                        "local_ip": self.data["zap"].get("network", {}).get("localIP", "unknown"),
+                        "local_ip": self.data["zap"]
+                        .get("network", {})
+                        .get("localIP", "unknown"),
                     }
 
                 _LOGGER.debug("Successfully fetched system data")
@@ -633,7 +637,7 @@ class SystemDataCoordinator:
         """Get nested value from data using dot notation."""
         try:
             value = self.data
-            for key in path.split('.'):
+            for key in path.split("."):
                 value = value[key]
             return value
         except (KeyError, TypeError):
