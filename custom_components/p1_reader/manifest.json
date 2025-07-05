@@ -1,0 +1,13 @@
+{
+  "domain": "p1_reader",
+  "name": "P1 Reader (Sourceful Energy Zap)",
+  "documentation": "https://github.com/fredde/zap_hass",
+  "requirements": [],
+  "codeowners": ["@fredde"],
+  "version": "1.0.0",
+  "iot_class": "local_polling",
+  "config_flow": false,
+  "dependencies": [],
+  "after_dependencies": [],
+  "issue_tracker": "https://github.com/fredde/zap_hass/issues"
+} 

@@ -1,0 +1,10 @@
+{
+  "name": "P1 Reader (Sourceful Energy Zap)",
+  "content_in_root": false,
+  "filename": "p1_reader.zip",
+  "render_readme": true,
+  "homeassistant": "2023.1.0",
+  "domains": ["sensor"],
+  "iot_class": "Local Polling",
+  "version": "1.0.0"
+} 
