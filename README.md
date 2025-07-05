@@ -248,6 +248,32 @@ grep p1_reader home-assistant.log
 - Home Assistant development environment
 - Python 3.9+
 - Access to a P1 Reader device
+- Docker (for local validation)
+
+### Local Validation
+
+Before pushing changes, you can run local validation to match the GitHub Actions environment:
+
+```bash
+./validate_local.sh
+```
+
+This script uses Docker to run the same checks as the CI pipeline:
+- Black code formatting
+- Python syntax validation  
+- JSON file validation
+
+### Code Formatting
+
+The project uses Black for code formatting. To format your code:
+
+```bash
+# Using Docker (matches CI environment)
+docker run --rm -v $(pwd):/app -w /app python:3.10-slim bash -c "pip install black && python -m black custom_components/"
+
+# Or if you have Black installed locally
+python -m black custom_components/
+```
 
 ### Testing
 
