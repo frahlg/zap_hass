@@ -92,10 +92,10 @@ Add the following to your `configuration.yaml`:
 ```yaml
 sensor:
   - platform: p1_reader
-    host: zap.local  # IP address or hostname of your P1 Reader
+    host: zap.local  # IP address or hostname of your Zap device
     endpoint: /api/data/p1/obis  # P1 data API endpoint (default)
-    system_endpoint: /  # System info API endpoint (default)
-    name: P1 Reader  # Optional: custom name prefix
+    system_endpoint: /api/system  # System info API endpoint (default)
+    name: Zap  # Optional: custom name prefix (default)
     scan_interval: 10  # Optional: update interval in seconds (default: 10)
 ```
 
@@ -103,19 +103,42 @@ sensor:
 
 | Option | Required | Default | Description |
 |--------|----------|---------|-------------|
-| `host` | Yes | `zap.local` | IP address or hostname of your P1 Reader |
+| `host` | Yes | `zap.local` | IP address or hostname of your Zap device |
 | `endpoint` | No | `/api/data/p1/obis` | P1 data API endpoint path |
-| `system_endpoint` | No | `/` | System information API endpoint path |
-| `name` | No | `P1 Reader` | Custom name prefix for sensors |
+| `system_endpoint` | No | `/api/system` | System information API endpoint path |
+| `name` | No | `Zap` | Custom name prefix for sensors |
 | `scan_interval` | No | `10` | Update interval in seconds |
+
+## Sensor Overview
+
+After setup, you'll have **35+ sensors** available:
+
+### 🔋 **Energy Sensors**
+- `sensor.zap_total_energy_import` - Total energy consumed (kWh)
+- `sensor.zap_total_energy_export` - Total energy exported (kWh)
+- `sensor.zap_current_power_import` - Current power consumption (kW)
+- `sensor.zap_current_power_export` - Current power export (kW)
+- `sensor.zap_net_power` - Net power (import - export, kW)
+
+### ⚡ **Per-Phase Monitoring**
+- `sensor.zap_voltage_l1/l2/l3` - Phase voltages (V)
+- `sensor.zap_current_l1/l2/l3` - Phase currents (A)
+- `sensor.zap_power_l1/l2/l3_import/export` - Phase power (kW)
+
+### 🌐 **Device Status**
+- `sensor.zap_device_id` - Unique device identifier
+- `sensor.zap_firmware_version` - Current firmware version
+- `sensor.zap_temperature` - Device temperature (°C)
+- `sensor.zap_wifi_signal_strength` - WiFi signal (dBm)
+- `sensor.zap_uptime` - Device uptime (seconds)
 
 ## Energy Dashboard Integration
 
 To use with Home Assistant's Energy Dashboard:
 
 1. Go to **Configuration** → **Energy**
-2. Under **Grid consumption**, add: `sensor.p1_reader_total_energy_import`
-3. Under **Return to grid**, add: `sensor.p1_reader_total_energy_export`
+2. Under **Grid consumption**, add: `sensor.zap_total_energy_import`
+3. Under **Return to grid**, add: `sensor.zap_total_energy_export`
 4. Save the configuration
 
 ## API Data Format
@@ -152,7 +175,7 @@ The component connects to your Sourceful Energy Zap via two local API endpoints:
 The component automatically parses all OBIS codes from the data array and creates corresponding Home Assistant sensors.
 
 ### System Information Data
-**API Endpoint:** `http://zap.local/` (or use your Zap's IP address)
+**API Endpoint:** `http://zap.local/api/system` (or use your Zap's IP address)
 
 **Response Format:**
 ```json
@@ -192,7 +215,7 @@ The component extracts system information and creates diagnostic sensors for dev
 1. **No sensors appearing**: 
    - Check that the Sourceful Energy Zap is accessible at the configured host
    - Verify the Zap is connected to your WiFi network
-   - Try accessing `http://zap.local/api/data/p1/obis` in a browser
+   - Try accessing `http://zap.local/api/data/p1/obis` and `http://zap.local/api/system` in a browser
 
 2. **Connection errors**: 
    - Ensure the Zap is on the same network as Home Assistant

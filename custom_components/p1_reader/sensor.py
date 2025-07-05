@@ -36,10 +36,10 @@ import homeassistant.helpers.config_validation as cv
 _LOGGER = logging.getLogger(__name__)
 
 DOMAIN = "p1_reader"
-DEFAULT_NAME = "P1 Reader"
+DEFAULT_NAME = "Zap"
 DEFAULT_HOST = "zap.local"
 DEFAULT_ENDPOINT = "/api/data/p1/obis"
-DEFAULT_SYSTEM_ENDPOINT = "/"
+DEFAULT_SYSTEM_ENDPOINT = "/api/system"
 DEFAULT_SCAN_INTERVAL = timedelta(seconds=10)
 
 CONF_ENDPOINT = "endpoint"
