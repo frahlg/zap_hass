@@ -7,13 +7,15 @@ The Sourceful Energy Zap is a P1 meter reader that gives you unprecedented clari
 ## Features
 
 - **Real-time monitoring** of P1 smart meter data from your Sourceful Energy Zap
-- **Energy tracking** for both import and export
+- **Energy tracking** for both import and export with proper Energy Dashboard integration
 - **Per-phase monitoring** (L1, L2, L3) for voltage, current, and power
 - **Reactive power monitoring** for comprehensive energy analysis
-- **Net power calculation** (import - export)
-- **Energy Dashboard integration** for Home Assistant's built-in energy management
-- **Automatic device discovery** and sensor creation
+- **Net power calculation** (import - export) - perfect for solar monitoring
+- **Device diagnostics** including temperature, WiFi signal, memory usage, and uptime
+- **Automatic device discovery** with real device ID and firmware version
 - **No external power required** - the Zap draws power directly from your smart meter
+- **35+ sensors** automatically created for comprehensive monitoring
+- **HACS compatible** for easy installation and updates
 
 ## Supported Sensors
 
@@ -66,16 +68,21 @@ The Sourceful Energy Zap is compatible with standard P1 RJ12 smart meters in Eur
 - Zap connected to your WiFi network
 - Zap accessible on your local network (default hostname: `zap.local`)
 
+## Quick Start
+
+1. **Install via HACS** (recommended) or manually download
+2. **Add to configuration.yaml**:
+   ```yaml
+   sensor:
+     - platform: p1_reader
+       host: zap.local
+   ```
+3. **Restart Home Assistant**
+4. **Enjoy 35+ sensors** automatically created!
+
 ## Installation
 
-### Method 1: Manual Installation
-
-1. Download this repository
-2. Copy the `custom_components/p1_reader` folder to your Home Assistant `custom_components` directory
-3. Restart Home Assistant
-4. Add the configuration to your `configuration.yaml`
-
-### Method 2: HACS (Home Assistant Community Store)
+### Method 1: HACS (Recommended)
 
 1. Open HACS in Home Assistant
 2. Go to "Integrations"
@@ -84,6 +91,13 @@ The Sourceful Energy Zap is compatible with standard P1 RJ12 smart meters in Eur
 5. Add this repository URL and select "Integration" as the category
 6. Install the integration
 7. Restart Home Assistant
+
+### Method 2: Manual Installation
+
+1. Download this repository
+2. Copy the `custom_components/p1_reader` folder to your Home Assistant `custom_components` directory
+3. Restart Home Assistant
+4. Add the configuration to your `configuration.yaml`
 
 ## Configuration
 
