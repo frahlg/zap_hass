@@ -45,4 +45,13 @@ else
     exit 1
 fi
 
+# Check icon file
+echo "🎨 Checking icon file..."
+if [ -f "icon.png" ]; then
+    echo "✅ Icon file exists!"
+else
+    echo "❌ Icon file (icon.png) is missing."
+    exit 1
+fi
+
 echo "🎉 All local validation checks passed! Safe to push to GitHub." 

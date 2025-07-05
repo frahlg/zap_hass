@@ -132,8 +132,13 @@ def main():
             if not validate_python_imports(file_path, description):
                 all_checks_passed = False
     
+    # Check branding files
+    print("\n6. Checking branding files...")
+    if not check_file_exists("icon.png", "Integration icon"):
+        all_checks_passed = False
+    
     # Check optional files
-    print("\n6. Checking optional files...")
+    print("\n7. Checking optional files...")
     optional_files = [
         ("CONTRIBUTING.md", "Contributing guidelines"),
         ("CHANGELOG.md", "Changelog"),

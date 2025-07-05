@@ -12,6 +12,7 @@ zap_hass/
 ├── CHANGELOG.md                        # Version history
 ├── CONTRIBUTING.md                     # Development guidelines
 ├── hacs.json                           # HACS configuration
+├── icon.png                            # Official Sourceful Energy logo
 ├── install.sh                          # Installation script
 ├── validate.py                         # Validation script
 ├── 

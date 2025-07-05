@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Network status sensors (WiFi status, SSID, signal strength, local IP)
 - Device information sensors (CPU frequency, flash size, SDK version)
 - Uptime sensor for device health monitoring
+- Official Sourceful Energy logo as integration icon for HACS and Home Assistant
 
 ### Changed
 - **BREAKING**: Renamed component from "p1_reader" to "sourceful_zap" for unique branding

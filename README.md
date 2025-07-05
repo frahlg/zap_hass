@@ -16,6 +16,7 @@ The Sourceful Energy Zap is a P1 meter reader that gives you unprecedented clari
 - **No external power required** - the Zap draws power directly from your smart meter
 - **35+ sensors** automatically created for comprehensive monitoring
 - **HACS compatible** for easy installation and updates
+- **Official Sourceful Energy branding** with the authentic logo and design
 
 ## Supported Sensors
 
@@ -341,6 +342,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - Developed for the [Sourceful Energy Zap](https://sourceful.energy/store/sourceful-energy-zap) P1 Reader
 - Sourceful Energy Zap is a product of [Sourceful Labs AB](https://sourceful.energy), Kalmar, Sweden 🇸🇪
+- Official Sourceful Energy logo used with permission from [Sourceful documentation](https://docs.sourceful.energy/)
 - Based on the OBIS (Object Identification System) standard for smart meter data
 - Built for Home Assistant integration
 - This integration is independently developed and not officially affiliated with Sourceful Labs AB
