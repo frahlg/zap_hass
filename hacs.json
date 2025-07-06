@@ -6,5 +6,5 @@
   "homeassistant": "2023.1.0",
   "domains": ["sensor"],
   "iot_class": "Local Polling",
-  "version": "1.0.0"
+  "version": "0.1.0"
 } 

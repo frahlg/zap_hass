@@ -7,68 +7,76 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Added
-- System and device monitoring sensors
-- Real device ID and firmware version in Home Assistant device registry
-- Temperature monitoring sensor
-- Memory usage sensors (total, used, free, percentage)
-- Network status sensors (WiFi status, SSID, signal strength, local IP)
-- Device information sensors (CPU frequency, flash size, SDK version)
-- Uptime sensor for device health monitoring
-- Official Sourceful Energy logo as integration icon for HACS and Home Assistant
+### Target: v1.0.0 - Home Assistant Core Submission
+- [ ] Config flow implementation (UI configuration)
+- [ ] Multi-device support
+- [ ] Test coverage (80%+)
+- [ ] DataUpdateCoordinator migration
+- [ ] Quality scale requirements (diagnostics, logging, repairs)
 
-### Changed
-- **BREAKING**: Renamed component from "p1_reader" to "sourceful_zap" for unique branding
-- **BREAKING**: Updated default name from "P1 Reader" to "Zap" for better branding
-- **BREAKING**: Corrected system endpoint from "/" to "/api/system"
-- **BREAKING**: Configuration platform changed from `platform: p1_reader` to `platform: sourceful_zap`
-- Device information now uses real device ID from Zap instead of static identifier
-- Firmware version is now retrieved from device and displayed in Home Assistant
-- Configuration now supports separate endpoints for P1 data and system information
-- Updated all documentation to reflect new defaults
-- Improved sensor naming with "Zap" prefix instead of "P1 Reader"
+## [0.1.0] - 2024-01-XX - Reference Implementation
 
-### Fixed
-- Corrected system endpoint path based on actual API structure
-
-## [1.0.0] - 2025-01-05
+### 🚀 Reference Implementation Status
+This release marks the transition to a **community-driven reference implementation** seeking Home Assistant core inclusion.
 
 ### Added
-- Initial release of P1 Reader Home Assistant Custom Component
-- Support for [Sourceful Energy Zap](https://sourceful.energy/store/sourceful-energy-zap) P1 Reader API
-- Automatic sensor creation for all standard OBIS codes
-- Support for European smart meters with standard P1 RJ12 ports
-- Energy sensors:
-  - Total Energy Import/Export (kWh)
-  - Current Power Import/Export (kW)
-  - Total Reactive Energy Import/Export (kVArh)
-  - Current Reactive Power Import/Export (kVAr)
-- Per-phase monitoring:
-  - Voltage L1/L2/L3 (V)
-  - Current L1/L2/L3 (A)
-  - Power Import/Export per phase (kW)
-  - Reactive Power Import/Export per phase (kVAr)
+- **Reference Implementation Status**: This is now a community-driven reference implementation seeking Home Assistant core inclusion
+- Complete OBIS code sensor support (25+ energy sensors)
+- System diagnostics sensors (12 system sensors)
+- Dual API endpoint support (`/api/data/p1/obis` and `/api/system`)
+- Energy Dashboard integration
+- Per-phase monitoring (L1/L2/L3)
+- Net power calculation
+- HACS compatibility
+- Official Sourceful Energy branding with authentic logo
+- Comprehensive documentation and examples
+- CI/CD pipeline with code quality checks (Black, flake8, pylint, mypy)
+- Local validation script for efficient development
+
+### Technical Implementation
+- Basic YAML configuration (to be migrated to config flow)
+- Single device support (to be expanded)
+- Manual polling (to be migrated to DataUpdateCoordinator)
+- No tests (critical for core inclusion)
+- 35+ sensors total (25+ energy + 12 system)
+
+### Energy Sensors
+- Total Energy Import/Export (kWh)
+- Current Power Import/Export (kW)
+- Total Reactive Energy Import/Export (kVArh)
+- Current Reactive Power Import/Export (kVAr)
+- Per-phase monitoring (Voltage L1/L2/L3, Current L1/L2/L3, Power per phase)
 - Calculated Net Power sensor (import - export)
-- Home Assistant Energy Dashboard integration
-- Proper device information and unique IDs
-- Configurable scan interval and endpoint
-- Comprehensive error handling and logging
-- HACS (Home Assistant Community Store) support
-- Example configurations and automation examples
 
-### Technical Details
-- Built for Home Assistant 2023.1.0 and newer
-- Uses async/await for non-blocking API calls
-- Implements proper throttling to avoid API spam
-- Follows Home Assistant sensor entity guidelines
-- Supports both IP address and hostname configuration
-- Includes proper device class and state class assignments
-- Regular expression parsing of OBIS codes
-- Robust error handling for network and API issues
+### System Sensors
+- Device ID and firmware version
+- Temperature monitoring
+- Memory usage (total, used, free, percentage)
+- Network status (WiFi status, SSID, signal strength, local IP)
+- Device information (CPU frequency, flash size, SDK version)
+- Uptime sensor for device health monitoring
 
-### Documentation
-- Comprehensive README with installation instructions
-- Configuration examples with all options
-- Troubleshooting guide
-- Contributing guidelines
-- MIT License 
+### Community Contributions Welcome
+- See [Contributing & Earning Grants](README.md#contributing--earning-grants)
+- Check [GitHub Issues](https://github.com/frahlg/zap_hass/issues) for available tasks
+- Earn grants through [Spark Initiative](https://sourceful.energy/grants)
+
+### Breaking Changes
+- Repository renamed from `p1_reader` to `sourceful_zap`
+- Configuration platform changed from `p1_reader` to `sourceful_zap`
+- Component domain changed from `p1_reader` to `sourceful_zap`
+- Default name changed from "P1 Reader" to "Zap"
+- System endpoint corrected from "/" to "/api/system"
+
+## Previous Development History
+
+### Pre-0.1.0 - Development Phase
+- Initial P1 reader implementation
+- Basic OBIS code parsing
+- Single device polling
+- YAML configuration only
+- No automated testing
+- Development iterations and bug fixes
+- Official Sourceful Energy product integration
+- Real device information retrieval
+- Comprehensive sensor suite development 

@@ -1,6 +1,20 @@
 # Sourceful Energy Zap Home Assistant Custom Component
 
-A custom component for Home Assistant that integrates with the [Sourceful Energy Zap](https://sourceful.energy/store/sourceful-energy-zap) to monitor smart meter data.
+> **🚀 Community Reference Implementation**
+> 
+> This HACS-compatible integration is a **reference implementation** created by Sourceful Energy. While fully functional, we're opening it to the community to help us reach Home Assistant core standards.
+> 
+> **Current Status:**
+> - ✅ Fully working with HACS
+> - ✅ 35+ sensors from OBIS codes  
+> - ✅ Energy Dashboard compatible
+> - 🎯 Goal: Home Assistant core inclusion
+> 
+> **Help us reach official status!** See [Contributing & Earning Grants](#contributing--earning-grants) for opportunities.
+
+## About This Implementation
+
+A custom component for Home Assistant that integrates with the [Sourceful Energy Zap](https://sourceful.energy/store/sourceful-energy-zap) P1 meter reader. This implementation works well but needs community contributions to meet Home Assistant core standards.
 
 The Sourceful Energy Zap is a P1 meter reader that gives you unprecedented clarity of your energy consumption to help reduce your bills. Made by [Sourceful Labs AB](https://sourceful.energy) in Kalmar, Sweden 🇸🇪, it's designed for European smart meters with standard P1 RJ12 ports.
 
@@ -279,13 +293,75 @@ Or check the log file directly:
 grep sourceful_zap home-assistant.log
 ```
 
+## Contributing & Earning Grants
+
+### 🎯 Path to Home Assistant Core
+
+We need help with these specific improvements to reach official integration status:
+
+1. **Config Flow Implementation**
+   - Convert from YAML to UI configuration
+   - Add device discovery via mDNS/SSDP
+   - Implement proper config validation
+   - See [HA Config Flow docs](https://developers.home-assistant.io/docs/config_entries_config_flow_handler)
+
+2. **Multi-Device Support**
+   - Support multiple Zap devices per installation
+   - Unique entity naming per device
+   - Proper device management
+
+3. **Test Coverage**
+   - Add pytest tests with 80%+ coverage
+   - Test all sensor types
+   - Mock API responses
+   - Error condition testing
+
+4. **DataUpdateCoordinator Migration**
+   - Convert to official DataUpdateCoordinator pattern
+   - Implement proper error handling
+   - Add connection state management
+
+5. **Quality Scale Requirements** 
+   - Add diagnostics support
+   - Implement proper logging
+   - Add repair suggestions
+   - Follow [Integration Quality Scale](https://developers.home-assistant.io/docs/integration_quality_scale_index)
+
+### 💰 How to Contribute & Earn
+
+1. **Check our [GitHub Issues](https://github.com/frahlg/zap_hass/issues)** for open tasks
+2. **Comment on an issue** to claim it (first come, first served)
+3. **Fork and implement** following HA development guidelines
+4. **Submit a PR** with tests and documentation
+5. **Get paid** via our [Spark Initiative](https://sourceful.energy/grants)
+
+### 🎮 Development Guidelines
+
+This is a simple P1 meter reader. Keep contributions focused:
+- Read OBIS codes from `/api/data/p1/obis`
+- Parse and present as sensors
+- Integrate with Energy Dashboard
+- Keep it lean and reliable
+
+No need for complex features - just solid, reliable meter reading that meets Home Assistant standards.
+
+### 🔧 Technical Debt
+
+Current implementation uses:
+- ❌ YAML configuration (needs config flow)
+- ❌ Basic polling (works fine, but could use DataUpdateCoordinator)
+- ❌ No tests (critical for core inclusion)
+- ❌ Single device only
+
+Each item above is an opportunity to contribute and earn grants!
+
 ## Development
 
 ### Prerequisites
 
 - Home Assistant development environment
 - Python 3.9+
-- Access to a P1 Reader device
+- Access to a Sourceful Energy Zap device
 - Docker (for local validation)
 
 ### Local Validation
@@ -318,25 +394,47 @@ python -m black custom_components/
 1. Clone this repository
 2. Set up a Home Assistant development environment
 3. Install the component in development mode
-4. Configure with your P1 Reader details
+4. Configure with your Zap device details
 5. Test functionality and sensor updates
+
+## Why This Matters
+
+Getting this integration into Home Assistant core means:
+- ✅ No manual installation needed
+- ✅ Automatic updates with HA releases  
+- ✅ Better visibility for Zap users
+- ✅ Professional validation of the integration
+- ✅ Easier onboarding for new Sourceful Energy customers
+
+## Version History
+
+- **v0.1.0**: Initial reference implementation (current)
+  - Basic OBIS reading via YAML config
+  - HACS compatible
+  - Single device support
+  - **Target**: v1.0 for Home Assistant core submission
 
 ## Contributing
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
+1. **Check [GitHub Issues](https://github.com/frahlg/zap_hass/issues)** for available tasks
+2. **Comment on an issue** to claim it  
+3. **Fork the repository** and create a feature branch
+4. **Follow HA development guidelines** and add tests
+5. **Submit a pull request** with documentation
+6. **Earn grants** through our [Spark Initiative](https://sourceful.energy/grants)
+
+See [Contributing & Earning Grants](#contributing--earning-grants) section above for detailed guidelines.
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Support
+## Support & Community
 
-- **Issues**: Please report bugs and feature requests through GitHub Issues
-- **Discussions**: Use GitHub Discussions for general questions and community support
+- **Discord**: Join [#dev channel](https://discord.com/invite/srcful) to discuss contributions
+- **Issues**: Check [open issues](https://github.com/frahlg/zap_hass/issues) for tasks
+- **Grants**: Earn USDC at [sourceful.energy/grants](https://sourceful.energy/grants)
+- **Discussions**: Use GitHub Discussions for general questions
 
 ## Credits
 
@@ -349,7 +447,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Version History
 
-- **1.0.0**: Initial release with basic P1 Reader support
+- **0.1.0**: Initial release with basic P1 Reader support
 - Support for all standard OBIS codes
 - Energy Dashboard integration
 - Per-phase monitoring capabilities 
