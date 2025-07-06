@@ -329,7 +329,7 @@ We need help with these specific improvements to reach official integration stat
 
 ### 💰 How to Contribute & Earn
 
-1. **Check our [GitHub Issues](https://github.com/frahlg/zap_hass/issues)** for open tasks
+1. **Check our [GitHub Issues](https://github.com/srcfl/spark-zap-home-assistant/issues)** for open tasks
 2. **Comment on an issue** to claim it (first come, first served)
 3. **Fork and implement** following HA development guidelines
 4. **Submit a PR** with tests and documentation
@@ -416,7 +416,7 @@ Getting this integration into Home Assistant core means:
 
 ## Contributing
 
-1. **Check [GitHub Issues](https://github.com/frahlg/zap_hass/issues)** for available tasks
+1. **Check [GitHub Issues](https://github.com/srcfl/spark-zap-home-assistant/issues)** for available tasks
 2. **Comment on an issue** to claim it  
 3. **Fork the repository** and create a feature branch
 4. **Follow HA development guidelines** and add tests
@@ -432,7 +432,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Support & Community
 
 - **Discord**: Join [#dev channel](https://discord.com/invite/srcful) to discuss contributions
-- **Issues**: Check [open issues](https://github.com/frahlg/zap_hass/issues) for tasks
+- **Issues**: Check [open issues](https://github.com/srcfl/spark-zap-home-assistant/issues) for tasks
 - **Grants**: Earn USDC at [sourceful.energy/grants](https://sourceful.energy/grants)
 - **Discussions**: Use GitHub Discussions for general questions
 
