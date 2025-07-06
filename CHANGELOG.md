@@ -58,7 +58,7 @@ This release marks the transition to a **community-driven reference implementati
 
 ### Community Contributions Welcome
 - See [Contributing & Earning Grants](README.md#contributing--earning-grants)
-- Check [GitHub Issues](https://github.com/srcfl/spark-zap-home-assistant/issues) for available tasks
+- Check [GitHub Issues](https://github.com/srcfl/zap-home-assistant/issues) for available tasks
 - Earn grants through [Spark Initiative](https://sourceful.energy/grants)
 
 ### Breaking Changes

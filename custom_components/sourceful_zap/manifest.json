@@ -1,7 +1,7 @@
 {
   "domain": "sourceful_zap",
   "name": "Sourceful Energy Zap",
-  "documentation": "https://github.com/srcfl/spark-zap-home-assistant",
+  "documentation": "https://github.com/srcfl/zap-home-assistant",
   "requirements": [],
   "codeowners": ["@srcfl"],
   "version": "0.1.0",
@@ -9,5 +9,5 @@
   "config_flow": false,
   "dependencies": [],
   "after_dependencies": [],
-  "issue_tracker": "https://github.com/srcfl/spark-zap-home-assistant/issues"
+  "issue_tracker": "https://github.com/srcfl/zap-home-assistant/issues"
 } 
