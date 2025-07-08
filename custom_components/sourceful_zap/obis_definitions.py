@@ -4,6 +4,8 @@ from homeassistant.components.sensor import SensorDeviceClass, SensorStateClass
 from homeassistant.const import (
     UnitOfElectricCurrent,
     UnitOfElectricPotential,
+    UnitOfReactivePower,
+    UnitOfReactiveEnergy,
     UnitOfEnergy,
     UnitOfPower,
 )
@@ -39,28 +41,28 @@ SENSOR_DEFINITIONS = {
     },
     "1-0:3.8.0": {
         "name": "Total Reactive Energy Import",
-        "unit": "kVArh",
+        "unit": UnitOfReactiveEnergy.KILO_VOLT_AMPERE_REACTIVE_HOUR,
         "device_class": SensorDeviceClass.ENERGY,
         "state_class": SensorStateClass.TOTAL_INCREASING,
         "icon": "mdi:sine-wave",
     },
     "1-0:4.8.0": {
         "name": "Total Reactive Energy Export",
-        "unit": "kVArh",
+        "unit": UnitOfReactiveEnergy.KILO_VOLT_AMPERE_REACTIVE_HOUR,
         "device_class": SensorDeviceClass.ENERGY,
         "state_class": SensorStateClass.TOTAL_INCREASING,
         "icon": "mdi:sine-wave",
     },
     "1-0:3.7.0": {
         "name": "Current Reactive Power Import",
-        "unit": "kVAr",
+        "unit": UnitOfReactivePower.KILO_VOLT_AMPERE_REACTIVE,
         "device_class": SensorDeviceClass.REACTIVE_POWER,
         "state_class": SensorStateClass.MEASUREMENT,
         "icon": "mdi:sine-wave",
     },
     "1-0:4.7.0": {
         "name": "Current Reactive Power Export",
-        "unit": "kVAr",
+        "unit": UnitOfReactivePower.KILO_VOLT_AMPERE_REACTIVE,
         "device_class": SensorDeviceClass.REACTIVE_POWER,
         "state_class": SensorStateClass.MEASUREMENT,
         "icon": "mdi:sine-wave",
@@ -156,21 +158,21 @@ SENSOR_DEFINITIONS = {
     # Phase reactive power import
     "1-0:23.7.0": {
         "name": "Reactive Power L1 Import",
-        "unit": "kVAr",
+        "unit": UnitOfReactivePower.KILO_VOLT_AMPERE_REACTIVE,
         "device_class": SensorDeviceClass.REACTIVE_POWER,
         "state_class": SensorStateClass.MEASUREMENT,
         "icon": "mdi:sine-wave",
     },
     "1-0:43.7.0": {
         "name": "Reactive Power L2 Import",
-        "unit": "kVAr",
+        "unit": UnitOfReactivePower.KILO_VOLT_AMPERE_REACTIVE,
         "device_class": SensorDeviceClass.REACTIVE_POWER,
         "state_class": SensorStateClass.MEASUREMENT,
         "icon": "mdi:sine-wave",
     },
     "1-0:63.7.0": {
         "name": "Reactive Power L3 Import",
-        "unit": "kVAr",
+        "unit": UnitOfReactivePower.KILO_VOLT_AMPERE_REACTIVE,
         "device_class": SensorDeviceClass.REACTIVE_POWER,
         "state_class": SensorStateClass.MEASUREMENT,
         "icon": "mdi:sine-wave",
@@ -178,21 +180,21 @@ SENSOR_DEFINITIONS = {
     # Phase reactive power export
     "1-0:24.7.0": {
         "name": "Reactive Power L1 Export",
-        "unit": "kVAr",
+        "unit": UnitOfReactivePower.KILO_VOLT_AMPERE_REACTIVE,
         "device_class": SensorDeviceClass.REACTIVE_POWER,
         "state_class": SensorStateClass.MEASUREMENT,
         "icon": "mdi:sine-wave",
     },
     "1-0:44.7.0": {
         "name": "Reactive Power L2 Export",
-        "unit": "kVAr",
+        "unit": UnitOfReactivePower.KILO_VOLT_AMPERE_REACTIVE,
         "device_class": SensorDeviceClass.REACTIVE_POWER,
         "state_class": SensorStateClass.MEASUREMENT,
         "icon": "mdi:sine-wave",
     },
     "1-0:64.7.0": {
         "name": "Reactive Power L3 Export",
-        "unit": "kVAr",
+        "unit": UnitOfReactivePower.KILO_VOLT_AMPERE_REACTIVE,
         "device_class": SensorDeviceClass.REACTIVE_POWER,
         "state_class": SensorStateClass.MEASUREMENT,
         "icon": "mdi:sine-wave",
