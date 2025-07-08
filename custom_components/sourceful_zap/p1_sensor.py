@@ -1,4 +1,4 @@
-"""System Sensor."""
+"""P1 Sensor."""
 
 import logging
 from typing import Any
@@ -10,33 +10,35 @@ from homeassistant.components.sensor import (
 )
 
 from .const import DEFAULT_NAME, DOMAIN
-from .systemdatacoordinator import SystemDataCoordinator
+from .p1_coordinator import P1DataCoordinator
+from .system_data_coordinator import SystemDataCoordinator
 
 _LOGGER = logging.getLogger(__name__)
 
 
-class SystemSensor(SensorEntity):
-    """Representation of a Zap system sensor."""
+class P1Sensor(SensorEntity):
+    """Representation of a P1 meter sensor."""
 
     def __init__(
         self,
-        coordinator: SystemDataCoordinator,
-        sensor_key: str,
+        coordinator: P1DataCoordinator,
+        system_coordinator: SystemDataCoordinator,
+        obis_code: str,
         sensor_name: str,
-        unit: str | None,
+        unit: str,
         device_class: SensorDeviceClass | None = None,
         state_class: SensorStateClass | None = None,
         icon: str | None = None,
-        data_path: str = "",
         name_prefix: str = DEFAULT_NAME,
     ) -> None:
-        """Initialize the system sensor."""
+        """Initialize the sensor."""
         self.coordinator = coordinator
-        self.sensor_key = sensor_key
-        self.data_path = data_path
+        self.system_coordinator = system_coordinator
+        self.obis_code = obis_code
         self._attr_name = f"{name_prefix} {sensor_name}"
         self._attr_unique_id = (
-            f"{name_prefix.lower().replace(' ', '_')}_system_{sensor_key}"
+            f"{name_prefix.lower().replace(' ', '_')}_"
+            f"{obis_code.replace(':', '_').replace('-', '_')}"
         )
         self._attr_native_unit_of_measurement = unit
         self._attr_device_class = device_class
@@ -48,8 +50,8 @@ class SystemSensor(SensorEntity):
     @property
     def device_info(self) -> dict[str, Any]:
         """Return device information."""
-        device_id = self.coordinator.device_info.get("device_id", "unknown")
-        firmware_version = self.coordinator.device_info.get(
+        device_id = self.system_coordinator.device_info.get("device_id", "unknown")
+        firmware_version = self.system_coordinator.device_info.get(
             "firmware_version", "unknown"
         )
 
@@ -66,18 +68,9 @@ class SystemSensor(SensorEntity):
         """Update the sensor."""
         await self.coordinator.async_update()
 
-        value = self.coordinator.get_nested_value(self.data_path)
-        if value is not None:
-            # Round floating point values to 2 decimal places
-            if isinstance(value, float):
-                self._attr_native_value = round(value, 2)
-            else:
-                self._attr_native_value = value
+        if self.obis_code in self.coordinator.data:
+            self._attr_native_value = self.coordinator.data[self.obis_code]["value"]
             self._attr_available = True
         else:
             self._attr_available = False
-            _LOGGER.debug(
-                "System sensor %s: No data found at path %s",
-                self.sensor_key,
-                self.data_path,
-            )
+            _LOGGER.debug("OBIS code %s not found in data", self.obis_code)

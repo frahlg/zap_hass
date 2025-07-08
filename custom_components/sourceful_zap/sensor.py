@@ -30,11 +30,11 @@ from .const import (
     DOMAIN,
 )
 from .obis_definitions import SENSOR_DEFINITIONS
-from .p1datacoordinator import P1DataCoordinator
-from .p1sensor import P1Sensor
+from .p1_coordinator import P1DataCoordinator
+from .p1_sensor import P1Sensor
+from .system_data_coordinator import SystemDataCoordinator
+from .system_sensor import SystemSensor
 from .system_sensor_definitions import SYSTEM_SENSOR_DEFINITIONS
-from .systemdatacoordinator import SystemDataCoordinator
-from .systemsensor import SystemSensor
 
 _LOGGER = logging.getLogger(__name__)
 

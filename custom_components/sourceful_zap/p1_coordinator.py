@@ -10,7 +10,6 @@ import async_timeout
 
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
-from homeassistant.helpers.typing import ConfigType
 from homeassistant.util import Throttle
 
 from .const import DEFAULT_SCAN_INTERVAL
